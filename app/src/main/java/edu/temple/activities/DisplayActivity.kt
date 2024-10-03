@@ -1,12 +1,13 @@
 package edu.temple.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 
-const val RESULT_KEY = "reply message"
+
 
 class DisplayActivity : AppCompatActivity() {
 
@@ -17,10 +18,8 @@ class DisplayActivity : AppCompatActivity() {
     private lateinit var lyricsDisplayTextView: TextView
 
     val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        if (it.resultCode == RESULT_OK) {
-            it.data?.apply {
-                //lyricsDisplayTextView.text = getStringExtra(RESULT_KEY)
-            }
+        if (it.resultCode >0 ) {
+            lyricsDisplayTextView.textSize = it.resultCode.toFloat()
         }
     }
     private lateinit var textSizeSelectorButton: Button
@@ -31,6 +30,7 @@ class DisplayActivity : AppCompatActivity() {
 
         lyricsDisplayTextView = findViewById(R.id.lyricsDisplayTextView)
         textSizeSelectorButton = findViewById(R.id.textSizeSelectorButton)
+        textSizeSelectorButton.setOnClickListener { launcher.launch(Intent(this, TextSizeActivity::class.java)) }
 
     }
 }
