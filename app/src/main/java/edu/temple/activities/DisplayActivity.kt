@@ -19,7 +19,7 @@ class DisplayActivity : AppCompatActivity() {
     val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         if (it.resultCode == RESULT_OK) {
             it.data?.apply {
-                lyricsDisplayTextView.text = getStringExtra(RESULT_KEY)
+                //lyricsDisplayTextView.text = getStringExtra(RESULT_KEY)
             }
         }
     }
